@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Homework</title>
+</head>
+<body>
+
+    <div id="counter" style="padding: 10px;background: #ccc">0</div>
+
+    <div class="button-set">
+        <button onclick="startCounter()">Start Counter</button>
+        <button onclick="clearCounter()">Clear Counter</button>
+        <button onclick="stopCounter()">Stop Counter and Start Again</button>
+        <button onclick ="startFromEnd()">Counter from other side</button>
+    </div>
+
+    <script>
+        var counter = document.getElementById("counter");
+
+
+        var i=1;
+        var myVar;
+
+        function startCounter()  {
+
+            myVar = setTimeout(function(){
+                if(i<=30){
+                    counter.innerText = i;
+                    i++;
+                }
+                startCounter();
+
+            }, 1000);
+        }
+
+        function stopCounter(){
+            clearTimeout( myVar );
+            i=0;
+            startCounter();
+        }
+        function clearCounter() {
+            clearTimeout( myVar );
+            counter.innerText = 0;
+        }
+
+        var j=30;
+        function startFromEnd(){
+            clearTimeout( myVar );
+            myVar = setTimeout(function(){
+
+                if(j>=0){
+                    counter.innerText = j;
+                    j--;
+                }
+                startFromEnd();
+
+            }, 1000);
+        }
+
+    </script>
+</body>
+</html>
